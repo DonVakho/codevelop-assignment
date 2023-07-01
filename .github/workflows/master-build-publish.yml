@@ -1,0 +1,46 @@
+name: Master build and publish code
+
+on:
+  push:
+    branches:
+    - master
+    paths:
+    - gradle.properties
+
+jobs:
+  master-build-and-publish-job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get release_version
+        id: release_ver
+        uses: christian-draeger/read-properties@1.1.1
+        with:
+          path: ./gradle.properties
+          properties: release_version
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      # Building project with gradle, this will include executing tests and also executing checkstyle
+      - name: Build with Gradle
+        run: ./gradlew -p . --info clean build -Prelease_version=${{ steps.release_ver.outputs.value }}
+
+      # Run Owasp dependency check module to detect if project contains any vulnerable libraries
+      - name: Owasp dependency check
+        run: ./gradlew dependencyCheckAnalyze
+
+      - name: Upload OWASP scan results to GitHub Security tab
+        if: success() || failure()
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: './build/reports/dependency-check-report.sarif'
+
+      - name: Publish artifact
+        run: echo "This step is currently unavailable since there is no information about publishing"
