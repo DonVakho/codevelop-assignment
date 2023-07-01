@@ -7,26 +7,34 @@ import com.acme.test01.vakhtangdonadze.service.AccountService;
 
 public class AcmeAccountService implements AccountService {
 
+    private final String userId;
+
     private SystemDB database = SystemDB.getInstance();
 
+    public AcmeAccountService(String userId) {
+        this.userId = userId;
+    }
+
     @Override
-    public void openSavingsAccount(Long accountId, Long amountToDeposit) {
+    public void openSavingsAccount(int amountToDeposit) {
+        //TODO
+    }
+
+    @Override
+    public void openCurrentAccount() {
+        //TODO
 
     }
 
     @Override
-    public void openCurrentAccount(Long accountId) {
-
-    }
-
-    @Override
-    public void withdraw(Long accountId, int amountToWithdraw)
+    public void withdraw(int amountToWithdraw)
             throws AccountNotFoundException, WithdrawalAmountTooLargeException {
+        //TODO
 
     }
 
     @Override
-    public void deposit(Long accountId, int amountToDeposit) throws AccountNotFoundException {
-
+    public void deposit(int amountToDeposit) throws AccountNotFoundException {
+        //TODO
     }
 }
