@@ -15,6 +15,4 @@ public class SimpleCustomer {
     public String getId() {
         return id;
     }
-
-
 }

@@ -35,8 +35,8 @@ public class WithdrawCurrentAction implements WithdrawAction {
         int currentBalance = getBalance.get();
         int overdraftLimit = getOverdraftLiit.get();
         int balanceAfterWithdraw = currentBalance - amountToWithdraw;
-        if(balanceAfterWithdraw < overdraftLimit){
-            throw  new WithdrawalAmountTooLargeException(amountToWithdraw, accountId);
+        if (balanceAfterWithdraw < overdraftLimit) {
+            throw new WithdrawalAmountTooLargeException(amountToWithdraw, accountId);
         }
         setBalance.accept(balanceAfterWithdraw);
         logger.info("Successfully withdrawn amount: {} from account with ID: {}", amountToWithdraw, accountId);

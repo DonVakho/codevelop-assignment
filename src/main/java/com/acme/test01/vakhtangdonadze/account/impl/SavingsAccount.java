@@ -64,8 +64,12 @@ public class SavingsAccount implements Account {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         SavingsAccount that = (SavingsAccount) o;
         return Objects.equals(getId(), that.getId());
     }

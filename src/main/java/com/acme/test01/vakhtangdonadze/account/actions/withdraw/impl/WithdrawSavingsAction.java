@@ -30,7 +30,7 @@ public class WithdrawSavingsAction implements WithdrawAction {
     public void withdraw(int amountToWithdraw) throws WithdrawalAmountTooLargeException {
         int currentBalance = getBalance.get();
         int balanceAfterWithdraw = currentBalance - amountToWithdraw;
-        if(balanceAfterWithdraw < BALANCE_LIMIT){
+        if (balanceAfterWithdraw < BALANCE_LIMIT) {
             throw new WithdrawalAmountTooLargeException(amountToWithdraw, accountId);
         }
         setBalance.accept(balanceAfterWithdraw);

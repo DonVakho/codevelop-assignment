@@ -83,8 +83,12 @@ public class CurrentAccount implements Account {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         CurrentAccount that = (CurrentAccount) o;
         return Objects.equals(getId(), that.getId());
     }

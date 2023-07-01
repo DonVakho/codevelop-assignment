@@ -8,7 +8,8 @@ public interface AccountService {
 
     void openCurrentAccount(Long accountId);
 
-    void withdraw(Long accountId, int amountToWithdraw) throws AccountNotFoundException, WithdrawalAmountTooLargeException;
+    void withdraw(Long accountId, int amountToWithdraw)
+            throws AccountNotFoundException, WithdrawalAmountTooLargeException;
 
     void deposit(Long accountId, int amountToDeposit) throws AccountNotFoundException;
 }

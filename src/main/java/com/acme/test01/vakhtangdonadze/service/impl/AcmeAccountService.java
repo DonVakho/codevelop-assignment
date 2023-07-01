@@ -8,6 +8,7 @@ import com.acme.test01.vakhtangdonadze.service.AccountService;
 public class AcmeAccountService implements AccountService {
 
     private SystemDB database = SystemDB.getInstance();
+
     @Override
     public void openSavingsAccount(Long accountId, Long amountToDeposit) {
 
@@ -19,7 +20,8 @@ public class AcmeAccountService implements AccountService {
     }
 
     @Override
-    public void withdraw(Long accountId, int amountToWithdraw) throws AccountNotFoundException, WithdrawalAmountTooLargeException {
+    public void withdraw(Long accountId, int amountToWithdraw)
+            throws AccountNotFoundException, WithdrawalAmountTooLargeException {
 
     }
 

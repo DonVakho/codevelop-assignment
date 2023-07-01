@@ -46,8 +46,8 @@ public class SystemDB {
     }
 
     public static SystemDB getInstance() {
-        if(instance == null){
-            instance =  new SystemDB();
+        if (instance == null) {
+            instance = new SystemDB();
         }
         return instance;
     }
