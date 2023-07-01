@@ -13,7 +13,7 @@ import java.util.Map;
 public class SystemDB {
     private static final Logger logger = LoggerFactory.getLogger(SystemDB.class);
 
-    private SystemDB instance;
+    private static SystemDB instance;
 
     private final Map<String, Account> accountStorage;
 
@@ -45,7 +45,7 @@ public class SystemDB {
         }
     }
 
-    public SystemDB getInstance() {
+    public static SystemDB getInstance() {
         if(instance == null){
             instance =  new SystemDB();
         }

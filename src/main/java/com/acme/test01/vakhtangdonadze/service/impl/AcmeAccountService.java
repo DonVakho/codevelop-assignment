@@ -1,10 +1,13 @@
 package com.acme.test01.vakhtangdonadze.service.impl;
 
+import com.acme.test01.vakhtangdonadze.SystemDB;
 import com.acme.test01.vakhtangdonadze.errors.AccountNotFoundException;
 import com.acme.test01.vakhtangdonadze.errors.WithdrawalAmountTooLargeException;
 import com.acme.test01.vakhtangdonadze.service.AccountService;
 
 public class AcmeAccountService implements AccountService {
+
+    private SystemDB database = SystemDB.getInstance();
     @Override
     public void openSavingsAccount(Long accountId, Long amountToDeposit) {
 
