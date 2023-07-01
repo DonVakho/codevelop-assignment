@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class DepositSavingsAction implements DepositAction {
 
@@ -13,16 +14,20 @@ public class DepositSavingsAction implements DepositAction {
 
     private final Consumer<Integer> setBalance;
 
+    private final Supplier<Integer> getBalance;
+
     private final String accountId;
 
-    public DepositSavingsAction(Consumer<Integer> setBalance, String accountId) {
+    public DepositSavingsAction(Supplier<Integer> getBalance, Consumer<Integer> setBalance, String accountId) {
         this.setBalance = setBalance;
+        this.getBalance = getBalance;
         this.accountId = accountId;
     }
 
     @Override
     public void deposit(int amountToDeposit) throws AccountNotFoundException {
-        setBalance.accept(amountToDeposit);
+        int currentBalance = getBalance.get();
+        setBalance.accept(currentBalance + amountToDeposit);
         logger.info("Successfully Deposited amount: {} to account with ID: {}", amountToDeposit, accountId);
     }
 }

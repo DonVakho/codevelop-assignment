@@ -9,4 +9,6 @@ public interface Account {
     void deposit(int amountToDeposit) throws AccountNotFoundException;
 
     String getId();
+
+    int getBalance();
 }

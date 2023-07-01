@@ -35,7 +35,7 @@ public class CurrentAccount implements Account {
                 this::setBalance,
                 id
         );
-        this.depositAction = new DepositCurrentAction(this::setBalance, id);
+        this.depositAction = new DepositCurrentAction(this::getBalance, this::setBalance, id);
         this.balance = 0;
         this.overdraftLimit = DEFAULT_OVERDRAFT_LIMIT;
     }
@@ -48,7 +48,7 @@ public class CurrentAccount implements Account {
                 this::setBalance,
                 id
         );
-        this.depositAction = new DepositCurrentAction(this::setBalance, id);
+        this.depositAction = new DepositCurrentAction(this::getBalance, this::setBalance, id);
         this.balance = balance;
         this.overdraftLimit = -overdraftLimit;
     }
@@ -68,7 +68,8 @@ public class CurrentAccount implements Account {
         return id;
     }
 
-    private int getBalance() {
+    @Override
+    public int getBalance() {
         return balance;
     }
 

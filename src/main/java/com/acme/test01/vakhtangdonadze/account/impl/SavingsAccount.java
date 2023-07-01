@@ -25,13 +25,13 @@ public class SavingsAccount implements Account {
     private int balance;
 
     public SavingsAccount(int balance, String ownerId) throws InitialDepositAmountNotEnoughException {
-        if(balance < 1000){
+        if (balance < 1000) {
             throw new InitialDepositAmountNotEnoughException(ownerId, balance);
         }
         this.balance = balance;
         this.ownerId = ownerId;
         this.withdrawAction = new WithdrawSavingsAction(this::getBalance, this::setBalance, id);
-        this.depositAction = new DepositSavingsAction(this::setBalance, id);
+        this.depositAction = new DepositSavingsAction(this::getBalance, this::setBalance, id);
     }
 
     @Override
@@ -53,7 +53,8 @@ public class SavingsAccount implements Account {
         return ownerId;
     }
 
-    private int getBalance() {
+    @Override
+    public int getBalance() {
         return balance;
     }
 
